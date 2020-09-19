@@ -8,6 +8,7 @@ import {
 } from "@apollo/client";
 
 import { AuthContext, AuthProvider } from "../context/authContext";
+import { useHistory } from "react-router-dom";
 
 const GET_ALL_POSTS = gql`
   {
@@ -25,12 +26,15 @@ const Home = () => {
   // access context
   const { state, dispatch } = useContext(AuthContext);
 
+  // react-router-history
+  let history = useHistory();
+
   const updateUserName = () => {
     dispatch({
-      type: 'LOGGED_IN_USER',
-      payload: 'Mike'
-    })
-  }
+      type: "LOGGED_IN_USER",
+      payload: "Mike",
+    });
+  };
 
   if (loading) return <p className="p-5">Loading...</p>;
 
@@ -64,7 +68,11 @@ const Home = () => {
       <hr />
       {JSON.stringify(state.user)}
       <hr />
-      <button onClick={updateUserName} className='btn btn-raised btn-success'>Update Name</button>      
+      <button onClick={updateUserName} className="btn btn-raised btn-success">
+        Update Name
+      </button>
+      <hr/>
+      {JSON.stringify(history)}
     </div>
   );
 };
