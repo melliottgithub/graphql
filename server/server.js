@@ -9,6 +9,8 @@ const { loadFilesSync } = require("@graphql-tools/load-files");
 
 require("dotenv").config();
 
+const { authCheck } = require("./helpers/auth");
+
 //express server
 const app = express();
 //db
@@ -49,7 +51,7 @@ apolloServer.applyMiddleware({ app });
 const httpserver = http.createServer(app);
 
 //rest endpoint
-app.get("/rest", function (req, res) {
+app.get("/rest", authCheck, function (req, res) {
   res.json({
     data: "It hit the endpoint",
   });
