@@ -36,7 +36,7 @@ const Home = () => {
     });
   };
 
-  if (loading) return <p className="p-5">Loading...</p>;
+  if (loading) return <h4 className="container p-5 text-danger">Loading...</h4>;
 
   return (
     //p=posts
