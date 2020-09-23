@@ -14,7 +14,6 @@ import { ToastContainer } from "react-toastify";
 import { Switch, Route } from "react-router-dom";
 import CompleteRegistration from "./components/auth/CompleteRegistration";
 import { AuthContext } from "./context/authContext";
-import { setContext } from '@apollo/client/link/context';
 
 
 const App = () => {
