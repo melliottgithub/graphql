@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import {
-  ApolloClient,Context,
+  ApolloClient,
   InMemoryCache,
   gql,
   ApolloProvider,
