@@ -42,6 +42,10 @@ const resolvers = mergeResolvers(
 const apolloServer = new ApolloServer({
   typeDefs,
   resolvers,
+  context: ({ req, res }) => ({
+    req,
+    res,
+  }),
 });
 
 //applyMiddleware
