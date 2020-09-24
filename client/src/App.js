@@ -15,11 +15,10 @@ import { Switch, Route } from "react-router-dom";
 import CompleteRegistration from "./components/auth/CompleteRegistration";
 import { AuthContext } from "./context/authContext";
 
-
 const App = () => {
   const { state } = useContext(AuthContext);
   const { user } = state;
-
+  
   const client = new ApolloClient({
     //uri: "https://48p1r2roz4.sse.codesandbox.io",
     uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
