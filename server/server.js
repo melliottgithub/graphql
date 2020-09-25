@@ -48,6 +48,9 @@ const apolloServer = new ApolloServer({
   }),
 });
 
+// const bodyParser = require("body-parser");
+// app.use(bodyParser.json());
+
 //applyMiddleware
 apolloServer.applyMiddleware({ app });
 
@@ -56,9 +59,7 @@ const httpserver = http.createServer(app);
 
 //rest endpoint
 app.get("/rest", authCheck, function (req, res) {
-  res.json({
-    data: "It hit the endpoint",
-  });
+  res.json({ data: "It hit the endpoint" });
 });
 
 //Using Port

@@ -4,10 +4,8 @@ const { authCheck } = require("../helpers/auth");
 
 //queries
 const totalPosts = () => posts.length;
-const allPosts =
-  //() => {
-   async (parent, args, { req }) => {
-   await authCheck(req);
+const allPosts = async (parent, args, { req }) => {
+  await authCheck(req);
   return posts;
 };
 //mutation

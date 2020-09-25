@@ -7,7 +7,7 @@ import {
   useLazyQuery,
 } from "@apollo/client";
 
-import { AuthContext, AuthProvider } from "../context/authContext";
+import { AuthContext } from "../context/authContext";
 import { useHistory } from "react-router-dom";
 
 const GET_ALL_POSTS = gql`
@@ -21,7 +21,7 @@ const GET_ALL_POSTS = gql`
 `;
 
 const Home = () => {
-  const { data, loading, error } = useQuery(GET_ALL_POSTS);
+  const { data, loading } = useQuery(GET_ALL_POSTS);
   const [fetchData, { data: posts }] = useLazyQuery(GET_ALL_POSTS);
   // access context
   const { state, dispatch } = useContext(AuthContext);

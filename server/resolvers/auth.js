@@ -14,7 +14,7 @@ const userCreate = async (parent, args, { req }) => {
     ? user
     : new User({
         email: currentUser.email,
-        username: shortid.generate(),
+       // username: shortid.generate(),
       }).save();
 };
 

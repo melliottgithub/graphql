@@ -19,7 +19,6 @@ const Register = () => {
     toast.info(`Check your email: ${email}`);
     //save user to localstorage
     window.localStorage.setItem("emailFormRegistration", email);
-
     //clear state
     setEmail("");
     setLoading("");

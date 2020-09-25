@@ -4,7 +4,9 @@ import {
   InMemoryCache,
   gql,
   ApolloProvider,
+  createHttpLink,
 } from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 //components
 import Home from "./components/Home";
 import Nav from "./components/Nav";
@@ -13,24 +15,29 @@ import Register from "./components/auth/Register";
 import { ToastContainer } from "react-toastify";
 import { Switch, Route } from "react-router-dom";
 import CompleteRegistration from "./components/auth/CompleteRegistration";
+
 import { AuthContext } from "./context/authContext";
 
 const App = () => {
   const { state } = useContext(AuthContext);
   const { user } = state;
-  
+  const httpLink = createHttpLink({
+    uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
+  });
+  const authLink = setContext((_, { headers }) => {
+    const token = user.token;
+    return {
+      ...headers,
+      authtoken: user ? token : "",
+    };
+  });
+
   const client = new ApolloClient({
     //uri: "https://48p1r2roz4.sse.codesandbox.io",
-    uri: process.env.REACT_APP_GRAPHQL_ENDPOINT,
+    link:authLink.concat(httpLink),
     cache: new InMemoryCache(),
-    request: (operation) => {
-      operation.setContext({
-        headers: {
-          authtoken: user ? user.token : "",
-        },
-      });
-    },
   });
+
   return (
     <ApolloProvider client={client}>
       <Nav />
